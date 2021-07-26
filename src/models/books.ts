@@ -1,12 +1,11 @@
 import client from "../db";
 
 export type Book = {
-    id: number;
+    id: string;
     title: string;
     total_pages: number;
     author: string;
     type: string;
-    summary: string;
 };
 
 export class BookStore {
@@ -38,7 +37,7 @@ export class BookStore {
         try {
             const conn = await client.connect();
             const sql = 'INSERT INTO books (title, author, total_pages, summary) VALUES($1, $2, $3, $4) RETURNING *';
-            const result = await conn.query(sql, [b.title, b.author, b.total_pages, b.summary]);
+            const result = await conn.query(sql, [b.title, b.author, b.total_pages, b.type]);
             const book = result.rows[0];
             conn.release()
             return book;
