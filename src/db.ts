@@ -13,7 +13,7 @@ const {
 } = process.env 
 
 let client: Pool = new Pool();
-console.log(ENV)
+console.log(typeof(POSTGRES_PASSWORD))
 
 if(ENV === 'dev') {
   client = new Pool({

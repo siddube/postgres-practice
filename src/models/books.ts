@@ -1,3 +1,4 @@
+// @ts-ignore
 import client from "../db";
 
 export type Book = {
@@ -11,6 +12,7 @@ export type Book = {
 export class BookStore {
     async index(): Promise<Book[]> {
         try {
+            // @ts-ignore
             const conn = await client.connect();
             const sql = 'SELECT * FROM books';
             const result = await conn.query(sql);
@@ -23,6 +25,7 @@ export class BookStore {
 
     async show(id: string): Promise<Book> {
         try {
+            // @ts-ignore
             const conn = await client.connect();
             const sql = 'SELECT * FROM books WHERE id=($1)';
             const result = await conn.query(sql, [id]);
@@ -35,6 +38,7 @@ export class BookStore {
 
     async create(b: Book): Promise<Book> {
         try {
+            // @ts-ignore
             const conn = await client.connect();
             const sql = 'INSERT INTO books (title, author, total_pages, summary) VALUES($1, $2, $3, $4) RETURNING *';
             const result = await conn.query(sql, [b.title, b.author, b.total_pages, b.type]);
@@ -48,6 +52,7 @@ export class BookStore {
 
     async delete(id: string): Promise<Book> {
         try {
+            // @ts-ignore
             const conn = await client.connect();
             const sql = 'DELETE FROM books WHERE id=($1)';
             const result = await conn.query(sql, [id]);
