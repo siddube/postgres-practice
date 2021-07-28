@@ -2,7 +2,7 @@
 import client from "../db";
 
 export type Book = {
-    id: string;
+    id: number;
     title: string;
     total_pages: number;
     author: string;
@@ -23,7 +23,7 @@ export class BookStore {
         }
     }
 
-    async show(id: string): Promise<Book> {
+    async show(id: number): Promise<Book> {
         try {
             // @ts-ignore
             const conn = await client.connect();
@@ -40,7 +40,7 @@ export class BookStore {
         try {
             // @ts-ignore
             const conn = await client.connect();
-            const sql = 'INSERT INTO books (title, author, total_pages, summary) VALUES($1, $2, $3, $4) RETURNING *';
+            const sql = 'INSERT INTO books (title, author, total_pages, type) VALUES($1, $2, $3, $4) RETURNING *';
             const result = await conn.query(sql, [b.title, b.author, b.total_pages, b.type]);
             const book = result.rows[0];
             conn.release()
@@ -50,7 +50,7 @@ export class BookStore {
         }
     }
 
-    async delete(id: string): Promise<Book> {
+    async delete(id: number): Promise<Book> {
         try {
             // @ts-ignore
             const conn = await client.connect();

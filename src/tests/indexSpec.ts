@@ -2,7 +2,7 @@ import { Book, BookStore } from '../models/books';
 
 const store = new BookStore();
 const addBook = {
-    id: "1",
+    id: 1,
     title: 'Freedom From Known',
     total_pages: 250,
     author: 'Jiddu Krishnamurti',
@@ -10,6 +10,7 @@ const addBook = {
   };
 
 describe("Book Model", () => {
+    console.log()
     it('should have an index method', () => {
         expect(store.index).toBeDefined();
       });
@@ -29,18 +30,18 @@ describe("Book Model", () => {
       it('create method should add a book', async () => {
         const result = await store.create(addBook);
         expect(result).toEqual({
-          id: "1",
+          id: 1,
           title: 'Freedom From Known',
           total_pages: 250,
           author: 'Jiddu Krishnamurti',
           type: 'Philosophy'
         });
       });
-    
-      /* it('index method should return a list of books', async () => {
+      /*
+      it('index method should return a list of books', async () => {
         const result = await store.index();
         expect(result).toEqual([{
-          id: "1",
+          id: 1,
           title: 'Freedom From Known',
           total_pages: 250,
           author: 'Jiddu Krishnamurti',
@@ -49,9 +50,9 @@ describe("Book Model", () => {
       });
     
       it('show method should return the correct book', async () => {
-        const result = await store.show("1");
+        const result = await store.show(1);
         expect(result).toEqual({
-          id: "1",
+          id: 1,
           title: 'Freedom From Known',
           total_pages: 250,
           author: 'Jiddu Krishnamurti',
@@ -60,9 +61,10 @@ describe("Book Model", () => {
       });
     
       it('delete method should remove the book', async () => {
-        store.delete("1");
+        store.delete(1);
         const result = await store.index()
     
         expect(result).toEqual([]);
-      }); */
+      });
+      */
 });
