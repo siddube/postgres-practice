@@ -8,13 +8,12 @@ const pg_1 = require("pg");
 dotenv_1.default.config();
 const { POSTGRES_HOST, POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_TEST_DB, ENV } = process.env;
 let client = new pg_1.Pool();
-console.log(ENV);
 if (ENV === 'dev') {
     client = new pg_1.Pool({
         host: POSTGRES_HOST,
         database: POSTGRES_DB,
         user: POSTGRES_USER,
-        password: POSTGRES_PASSWORD,
+        password: POSTGRES_PASSWORD
     });
 }
 if (ENV === 'test') {
@@ -22,7 +21,7 @@ if (ENV === 'test') {
         host: POSTGRES_HOST,
         database: POSTGRES_TEST_DB,
         user: POSTGRES_USER,
-        password: POSTGRES_PASSWORD,
+        password: POSTGRES_PASSWORD
     });
 }
 exports.default = client;

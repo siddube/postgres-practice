@@ -4,10 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookStore = void 0;
+// @ts-ignore
 const db_1 = __importDefault(require("../db"));
 class BookStore {
     async index() {
         try {
+            // @ts-ignore
             const conn = await db_1.default.connect();
             const sql = 'SELECT * FROM books';
             const result = await conn.query(sql);
@@ -20,6 +22,7 @@ class BookStore {
     }
     async show(id) {
         try {
+            // @ts-ignore
             const conn = await db_1.default.connect();
             const sql = 'SELECT * FROM books WHERE id=($1)';
             const result = await conn.query(sql, [id]);
@@ -32,6 +35,7 @@ class BookStore {
     }
     async create(b) {
         try {
+            // @ts-ignore
             const conn = await db_1.default.connect();
             const sql = 'INSERT INTO books (title, author, total_pages, summary) VALUES($1, $2, $3, $4) RETURNING *';
             const result = await conn.query(sql, [b.title, b.author, b.total_pages, b.type]);
@@ -45,6 +49,7 @@ class BookStore {
     }
     async delete(id) {
         try {
+            // @ts-ignore
             const conn = await db_1.default.connect();
             const sql = 'DELETE FROM books WHERE id=($1)';
             const result = await conn.query(sql, [id]);
